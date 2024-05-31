@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Calculator</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #151b54;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main{
+            padding: 10px;
+            border: 2px solid white;
+            width: 440px;
+        }
+        .main input{
+            width: 410px;
+            height: 60px;
+            text-align: right;
+            color: white;
+            background-color: black;
+            padding-right: 10px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+        .btns button{
+            width: 90px;
+            height: 90px;
+            margin: 5px;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 23px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <input type="text" id="a" placeholder="0" readonly />
+        <div class="btns">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>/</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>*</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>-</button>
+            <button>0</button>
+            <button>00</button>
+            <button>.</button>
+            <button>+</button>
+            <button>DEL</button>
+            <Button>AC</Button>
+            <button>SQRT</button>
+            <Button>=</Button>
+        </div>
+    </div>
+</body>
+<script>
+    let display = document.getElementById('a');
+    let btns = document.querySelectorAll('button');
+    let btnsArray = Array.from(btns);
+    let string = "";
+    btnsArray.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if (e.target.innerHTML == 'DEL'){
+                string = string.substring(0, string.length-1);
+                display.value = string;
+            } else if (e.target.innerHTML == 'AC'){
+                string = '';
+                display.value = string;
+            } else if (e.target.innerHTML == '=') {
+                string = eval(string);
+                display.value = string;
+            }else if(e.target.innerHTML== 'SQRT'){
+                string  = Math.sqrt(string);
+                display.value = string;
+            }  else{
+                string += e.target.innerHTML;
+                display.value = string;
+            }
+
+        });
+    });
+</script>
+</html>
